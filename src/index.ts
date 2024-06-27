@@ -18,3 +18,5 @@ app.use(express.static('public'));
 app.listen(PORT, () => {
 	console.log(`server started on port ${PORT}`);
 });
+
+export default app;

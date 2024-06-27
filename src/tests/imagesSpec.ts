@@ -1,7 +1,11 @@
-const myFunc = (num: number): number => {
-	return num;
-};
+import request from 'supertest';
+import app from '../index';
+import { HttpCode } from '../core';
 
-it('expect myFunc(5) to equal 25', () => {
-	expect(myFunc(5)).toEqual(25);
+describe('images processing endpoint', () => {
+	it('does not get 404', async () => {
+		const res = await request(app).get('/api/v1/images');
+		const status = res.statusCode;
+		expect(status).not.toEqual(404);
+	});
 });
