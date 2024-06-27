@@ -1,5 +1,5 @@
 import express from 'express';
-import posts from './api/posts';
+import imagesRoutes from './api/images';
 
 const routes = express.Router();
 
@@ -7,5 +7,5 @@ routes.get('/', (req, res) => {
 	res.send('main route');
 });
 
-routes.use('/posts', posts);
+routes.use('/images', imagesRoutes);
 export default routes;

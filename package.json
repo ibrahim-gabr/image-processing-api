@@ -5,14 +5,17 @@
 	"main": "src/index.ts",
 	"scripts": {
 		"dev": "ts-node-dev --respawn --clear --transpile-only --ignore-watch node_modules ./src/index.ts",
-		"build": "yarn test && rimraf ./dist && tsc",
+		"build": "rimraf ./dist && tsc",
 		"start": "node dist/app.js",
 		"lint": "eslint src/**/*.ts",
-		"format": "prettier --config .prettierrc --write \"src/**/*.ts\""
+		"format": "prettier --config .prettierrc --write \"src/**/*.ts\"",
+		"jasmine": "jasmine --config=src/spec/support/jasmine.json",
+		"test": "npm run build && npm run jasmine"
 	},
 	"devDependencies": {
 		"@types/compression": "^1.7.5",
 		"@types/express": "^4.17.21",
+		"@types/jasmine": "^5.1.4",
 		"@types/jest": "^29.5.12",
 		"@types/node": "^20.12.2",
 		"@types/supertest": "^6.0.2",
@@ -38,6 +41,8 @@
 		"ejs": "^3.1.10",
 		"env-var": "^7.4.1",
 		"express": "^4.19.2",
-		"express-rate-limit": "^7.2.0"
+		"express-rate-limit": "^7.2.0",
+		"jasmine": "^5.1.0",
+		"jasmine-spec-reporter": "^7.0.0"
 	}
 }

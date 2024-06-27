@@ -2,9 +2,10 @@
 	"exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"],
 	"include": ["src/**/*"],
 	"compilerOptions": {
-		"types": ["node", "jest", "express"],
+		"types": ["node", "jasmine", "express"],
 		"target": "ESNext",
 		"module": "CommonJS",
+		"lib": ["ESNext"],
 		"rootDir": "./src",
 		"moduleResolution": "Node",
 		"typeRoots": ["./node_modules/@types"],
