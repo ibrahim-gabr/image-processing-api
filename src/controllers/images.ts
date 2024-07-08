@@ -4,7 +4,7 @@ import path from 'node:path';
 
 export const resizeImage = async (filename: string, width: number, height: number): Promise<Buffer> => {
 	const fileUrl = path.resolve(`public/images/thumbs/${filename}_${width}_${height}.jpg`);
-	const srcUrl = path.resolve(`public/images/${filename}.jpg`);
+	const srcUrl = path.resolve(`public/images/original/${filename}.jpg`);
 	console.log(fileUrl);
 	if (fs.existsSync(fileUrl)) {
 		return await fsPromises.readFile(fileUrl);
