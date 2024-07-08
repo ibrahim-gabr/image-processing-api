@@ -49,11 +49,9 @@
     </form>
     <h3>Image Preview</h3>
     <div class="d-flex text-center justify-content-center p-1">
-        <img class="image-preview" src="http://localhost:3000/api/v1/images?filename=palmtunnel&width=200&height=111" />
+        <img class="image-preview" src="/api/v1/images?filename=palmtunnel&width=200&height=111" />
 
     </div>
-</div>
-</form>
 </div>
 
 <script>
@@ -66,7 +64,7 @@
 				data.forEach(filename => {
 					const file_name = filename.split('.')[0];
 					const img = document.createElement('img');
-					img.src = `http://localhost:3000/api/v1/images?filename=${file_name}&width=100&height=100`;
+					img.src = `/api/v1/images?filename=${file_name}&width=100&height=100`;
 					img.style.marginRight = '10px';
 					img.style.cursor = 'pointer';
 					img.addEventListener('click', function() {
@@ -75,7 +73,7 @@
 						input.value = file_name;
 						const imagePreview = document.querySelector('.image-preview');
 						console.log(imagePreview);
-						imagePreview.src = `http://localhost:3000/api/v1/images?filename=${file_name}&width=${formData.get('width')}&height=${formData.get('height')}`;
+						imagePreview.src = `/api/v1/images?filename=${file_name}&width=${formData.get('width')}&height=${formData.get('height')}`;
 					});
 
 					imagesList.appendChild(img);

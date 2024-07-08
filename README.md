@@ -10,7 +10,13 @@
 The server will listen on port 3000:
 
 #### Brief instructions
-go to http://localhost:3000 and chhose the initial image from the list of available images.
+- the app will be default start at port 3000 if you woud like to change it 
+create .env file at the root of the project and declare your port liek so ```PORT=4444```
+
+- Install: ```npm install```
+- Build: ```npm run build```
+- Start server: ```npm run start```
+- go to http://localhost:3000 (replace 3000 here with your specified port number ) and choose the initial image from the list of available images.
 Then you can resize the image by entering the desired width and height in pixels.
 
 #### Endpoint to list available images
