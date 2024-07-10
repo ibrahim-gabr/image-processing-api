@@ -1,33 +1,42 @@
 import express, { type RequestHandler } from 'express';
-import { resizeImage } from '../../controllers/images';
-import fs, { promises as fspromises } from 'fs';
+import { listImages, resizeImage } from '../../controllers/images';
+import { promises as fspromises } from 'fs';
+import { HttpCode, ZERO } from '../../core';
 
 const images = express.Router();
 
-images.get('/', (async (req, res, next) => {
+images.get('/', (async (req: express.Request, res: express.Response, next) => {
 	try {
 		const filename = req.query.filename as string;
-		const width = req.query.width as unknown as number;
-		const height = req.query.height as unknown as number;
+		const width = Number(req.query.width);
+		const height = Number(req.query.height);
 		['width', 'height', 'filename'].forEach((key: string) => {
 			if (!req.query[key] || req.query[key] === '') {
-				res.status(400).send(`${key} is required`);
+				res.status(HttpCode.BAD_REQUEST).send(`${key} is required`);
 				next(new Error(`${key} is required`)); // Stop further execution
 			}
 		});
+		// if height or width is not a number and not a positive integer
+		if (!Number.isInteger(width) || !Number.isInteger(height) || width <= ZERO || height <= ZERO) {
+			res.status(HttpCode.BAD_REQUEST).send('width and height must be positive integers');
+			next(new Error('width and height must be positive integers')); // Stop further
+		}
+		const originalFiles = await listImages();
+		if (!originalFiles.includes(filename)) {
+			res.status(HttpCode.NOT_FOUND).send('file not found');
+			next(new Error('file not found')); // Stop
+		}
 		const result = await resizeImage(filename, width, height);
-		console.log({ result });
 		res.type('jpeg').send(result);
 	} catch (error) {
 		next(error);
 	}
 }) as RequestHandler);
 
-images.get('/list', async (req, res) => {
+images.get('/list', (async (req: express.Request, res: express.Response) => {
 	const path = 'public/images/original';
 	const files = await fspromises.readdir(path);
-	console.log({ files });
 	res.json(files);
-});
+}) as RequestHandler);
 
 export default images;

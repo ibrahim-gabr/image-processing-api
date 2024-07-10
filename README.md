@@ -7,11 +7,9 @@
 - Start server: ```npm run start```
 
 ### Usage
-The server will listen on port 3000:
-
-#### Brief instructions
-- the app will be default start at port 3000 if you woud like to change it 
+  the app will be default start at port 3000 if you woud like to change it 
 create .env file at the root of the project and declare your port liek so ```PORT=4444```
+#### Brief instructions
 
 - Install: ```npm install```
 - Build: ```npm run build```
